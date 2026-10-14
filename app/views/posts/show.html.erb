@@ -1,0 +1,28 @@
+<div class="padding-l-15p">
+
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @post %>
+
+  <div>
+    <% if @post.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorite_path(@post),  data: { "turbo-method": :delete } do %>
+          ★<%= @post.favorites.count %> お気に入り
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to post_favorite_path(@post), data: { "turbo-method": :post } do %>
+          ☆<%= @post.favorites.count %> お気に入り
+        <% end %>
+      </p>
+    <% end %>
+
+    <!-- 投稿者のみ削除できるようにする -->
+    <% if @post.user == current_user %>
+      <%= button_to "投稿を削除", @post, method: :delete %>
+    <% end %>
+  </div>
+
+</div>

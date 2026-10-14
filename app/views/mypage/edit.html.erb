@@ -1,0 +1,38 @@
+<div class="padding-l-15p">
+
+  <h1>編集</h1>
+
+  <%= form_with model: @user, url: mypage_path do |form| %>
+    <% if @user.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+        <strong>メールアドレス:</strong>
+        <%= @user.email %>
+    </p>
+
+    <div>
+      <%= form.label :名前, style: "display: block" %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div>
+      <%= form.label :自己紹介, style: "display: block" %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div>
+      <%= form.submit '編集' %>
+    </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="padding-l-15p">
+
+  <p style="color: green"><%= notice %></p>
+
+  <h1>投稿一覧</h1>
+  
+  <p>
+    <%= link_to "新規投稿", new_post_path %>
+  </p>
+
+  <div id="posts">
+    <table>
+      <!-- ヘッダー -->
+      <tr>
+        <th class="width-200">タイトル</th>
+        <th class="width-600">投稿内容</th>
+        <th class="width-120">お気に入り数</th>
+        <th class="width-120"></th>
+      </tr>
+
+      <!-- ボディ -->
+      <% @posts.each do |post| %>
+        <tr id="<%= post.id %>">
+          <td class="">
+            <%= post.title %>
+          </td>
+
+          <td class="">
+            <%= post.comment %>
+          </td>
+
+          <td class="text-align-c">
+            ★<%= post.favorites.count %>
+          </td>          
+
+          <td>
+            <%= link_to "投稿詳細", post %>
+          </td>
+      <% end %>
+    </table>
+  </div>
+
+</div>
